@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+        h2 {
+            text-align: center;
+        }
+        .input-field {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #confirmationMessage {
+            display: none;
+            text-align: center;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Book Your Appointment</h2>
+
+    <form id="appointmentForm">
+        <div class="input-field">
+            <label for="date">Select Date:</label>
+            <input type="date" id="date" name="date" required>
+        </div>
+
+        <div class="input-field">
+            <label for="time">Select Time:</label>
+            <select id="time" name="time" required>
+                <option value="">-- Select a Time --</option>
+                <option value="09:00">09:00 AM</option>
+                <option value="09:30">09:30 AM</option>
+                <option value="10:00">10:00 AM</option>
+                <option value="10:30">10:30 AM</option>
+                <option value="11:00">11:00 AM</option>
+                <option value="01:00">01:00 PM</option>
+                <option value="01:30">01:30 PM</option>
+                <option value="02:00">02:00 PM</option>
+                <option value="02:30">02:30 PM</option>
+                <option value="03:00">03:00 PM</option>
+            </select>
+
+        </div>
+
+        <button type="submit">Confirm Appointment</button>
+    </form>
+
+    <p id="confirmationMessage"></p>
+</div>
+
+<script>
+    const appointmentForm = document.getElementById('appointmentForm');
+    const confirmationMessage = document.getElementById('confirmationMessage');
+
+    appointmentForm.addEventListener('submit', function (e) {
+        e.preventDefault(); // Prevent form submission
+        
+        const date = document.getElementById('date').value;
+        const time = document.getElementById('time').value;
+
+        if (date && time) {
+            confirmationMessage.style.display = 'block';
+            confirmationMessage.textContent = `Your appointment is scheduled for ${date} at ${time}.`;
+            appointmentForm.reset(); // Clear the form
+        }
+    });
+
+    // Clear the form on page refresh
+    window.addEventListener('load', function () {
+        appointmentForm.reset();
+    });
+</script>
+
+</body>
+</html>
